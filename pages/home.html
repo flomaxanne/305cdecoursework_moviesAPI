@@ -1,0 +1,38 @@
+
+<div ng-app="myApp" ng-controller="homeController" style=padding-top:40px>
+    <center>
+ <div class="row" >
+    <ul class="col-md-12">
+        <li class="thumbnail" ng-repeat="movie in movies">
+          <img ng-src="http://image.tmdb.org/t/p/w370/{{movie.poster_path}}" width="200px" height="200px"/>
+            <div class="caption">
+                <strong style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"> {{movie.title}}</strong><br/>
+                <strong> <a href="#details/{{movie.id}}"><button type="button" class="btn btn-info">View Details</button></a></strong>
+                </div>
+        </li>
+    </ul>
+</div>
+<button ng-click="getMovieList()" ng-hide="movieList.length == 0" class="btn btn-default">Load More Movies</button>
+<p ng-show="movieList.length == 0">loading movies</p>
+</center>
+</div>
+
+<style type="text/css">
+    .thumbnail{ 
+   display: inline-block;
+   width: 19%;
+   padding:15px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    width: 100%
+}
+li {
+    width: calc(100% - 10px);
+    margin: 0 5px;
+}
+</style>
+
+

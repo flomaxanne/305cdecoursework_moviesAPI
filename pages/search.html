@@ -1,0 +1,75 @@
+<div class="container-fluid outerdiv" ng-app="myApp" ng-controller="searchController">
+
+
+  <div class="animated zoomInRight">
+    <div class="input-group search-bar">
+      <input type="text" ng-model="search" ng-model-options="{ debounce: 800 }"  onclick="select()" class="form-control" placeholder="Enter full movie name" autofocus />
+      <span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
+    </div>
+
+
+    <div id="main-info" class="col-md-8">
+      <div ng-if="!movies">
+        Loading results...
+      </div>
+
+      <div ng-if="movies.Response==='True'">
+        <img ng-src="{{ movies.Poster=='N/A' ? 'http://placehold.it/150x220&text=N/A' : movies.Poster }}" class="thumbnail animated flip movie-poster">
+
+        <span class="span-outer">
+          <a href="http://imdb.com/title/{{ movies.imdbID }}" >{{ movies.Title }}</a>
+        </span>, {{ movies.Year }}
+
+        <p><strong>Released on:</strong> {{ movies.Released }} ({{ movies.Runtime }})</p>
+
+        <p>{{ movies.Plot }}</p>
+
+        <p class="outer-p">
+          <div class="inner-p">
+            <span class="label label-primary">Directors :</span> {{ movies.Director }}
+          </div>
+          <div class="inner-p">
+            <span class="label label-primary">Actors :</span> {{ movies.Actors }}
+          </div>
+          <div class="inner-p">
+            <span class="label label-primary">Genre :</span> {{ movies.Genre }}
+          </div>
+        </p>
+
+        <p class="outer-p-2">Ratings:
+          <br>
+          <strong>IMDb Rating</strong>: <span class="label label-success">{{ movies.imdbRating }}</span>
+          <br>
+          <strong>Rotten Tomatoes</strong>: <span class="label label-success">{{ movies.tomatoRating }}</span>
+        </p>
+
+        <p class="outer-p-3">
+          <a ng-href="https://www.youtube.com/results?search_query={{ movies.Title }}" target="_blank" class="btn btn-default btn-xs btn-info">Watch Trailers!</a>
+          <span class="divider"></span>
+          <a ng-href="http://subscene.com/subtitles/title?q={{ movies.Title }}" target="_blank" class="btn btn-default btn-xs btn-info">Get Subtitles!</a>
+          <span class="divider"></span>
+          <a ng-href="http://www.theost.com/search/custom/?key={{ movies.Title }}" target="_blank" class="btn btn-default btn-xs btn-info">Hear Soundtracks!</a>
+          <span class="divider"></span>
+          <a ng-href="http://www.amazon.in/s/ref=nb_sb_noss_1?url=search-alias%3Ddvd&field-keywords={{ movies.Title }}" target="_blank" class="btn btn-default btn-xs btn-info">Buy this movie!</a>
+        </p>
+      </div>
+
+      <div ng-if="movies.Response==='False'">
+        No results found.
+      </div>
+    </div>
+
+    <div id="related-results" class="col-md-4 animated bounce related-results">
+      <div ng-if="related.Response!=='False'">
+        Related Results:
+        <hr>
+
+        <ul class="rel-results">
+          <li ng-repeat="movie in related.Search">
+            <a href="#search" id="{{ $index + 1 }}" ng-click="update(movie)">{{ movie.Title }}</a>, {{ movie.Year }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

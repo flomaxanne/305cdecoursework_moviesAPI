@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie </title>	
+   <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
+  <script src="js/angular.js"></script>
+  <!-- to use the 'ngRoute' module you need to load the angular-route library. -->
+	<script src="js/angular-route.js"></script>
+	<script src="js/movies.js"></script>
+</head>
+
+<body ng-app="myApp">
+    
+<div class="container-fluid">
+
+<div id="header">
+   
+  <img src="images/movie-reel.png" alt="Logo" style="width:5em;height:5em;padding:1px">
+  <a href="#" id="logo">Movies</a>
+  <ul id="menu">
+    <li><a href="#home"><span>Home</span></a></li>
+   <li><a href="#search"><span>Search</span></a></li>
+    <li><a href="#favourites"><span>Favourites</span></a></li>
+  </ul>
+
+ </div>
+
+<article>
+	<div ng-view>
+		<!-- this is where the content will be displayed... -->
+	</div>
+	</article>
+	
+	
+	
+	<footer>Movies Advisor 	&copy;</footer>
+	</div>
+	
+	   
+</body>
+</html>
+<!-- 4 html files, 3 js files   -->
